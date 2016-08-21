@@ -1,4 +1,17 @@
-0 1315
-1 2686
-2 2683
-3 3316
+Distributing 1000 balls among 10000 boxes results in the following occupation 
+numbers of 0, 1, 2, and 3 balls.
+0 9047
+1 908
+2 43
+3 2
+
+And in terms of percentages: 
+0 0.9047
+1 0.0908
+2 0.0043
+3 0.0002
+
+Occupation percentage of boxes that have at least one ball: 
+1 0.952781
+2 0.0451207
+3 0.00209864

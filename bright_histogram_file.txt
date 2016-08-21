@@ -1,0 +1,13 @@
+Below are the absolute counts of 0, 1, 2, or 3 bright balls obtained by
+distributing 20000 dark balls and 1000 light balls among 10000 boxes.
+0 9032
+1 936
+2 32
+3 0
+
+
+Below are the fractions of visible boxes that are occupied with 1, 2, or 3 bright balls 
+obtained by distributing 20000 dark balls and 1000 light balls among 10000 boxes.
+1 0.966942
+2 0.0330579
+3 0

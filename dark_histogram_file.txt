@@ -1,0 +1,7 @@
+Below are the absolute counts of 0, 1, 2, or 3 dark balls obtained by
+distributing 20000 dark balls and 1000 light balls among 10000 boxes.
+0 927
+1 2173
+2 2873
+3 4027
+
