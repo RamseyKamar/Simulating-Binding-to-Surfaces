@@ -72,20 +72,14 @@ int main(){
     int r; //box index which gets randomly chosen
     int occupation_histogram[box_collection[0].size_of_box() + 1] = {0,0,0,0}; //vector containing the occupation numbers of 0,1,2, and 3 balls.
 
-
-
-
-    for (int i = 1; i <= num_balls; i++) {//randomly add balls to the boxes until no balls are left
-            r = rand_0toN_minus_1(num_boxes);//randomly choose a box
-            if (not(box_collection[r].isfull())) { //if the box you chose isn't full, add a ball to it
-                box_collection[r].add_ball();
-            } else { //if the first box you chose was full, keep selecting boxes until you find one that is empty and add a ball to it
-                while (box_collection[r].isfull()) {
-                    r = rand_0toN_minus_1(num_boxes);
-                }
-                box_collection[r].add_ball();
-            }
-
+    int num_balls_added = 0;
+    // Populate the ball collection
+    while (num_balls_added < num_balls){
+        r = rand_0toN_minus_1(num_boxes);
+        if (not(box_collection[r].isfull())){
+            box_collection[r].add_ball();
+            num_balls_added++;
+        }
     }
 
     //Next we want to find how many boxes have 0 or 1 or 2 or 3 balls
@@ -252,8 +246,12 @@ int main(){
     return 0;
 }
 
-int rand_0toN_minus_1(int n) { //Generate a random number from 0 to number of boxes - 1
-    return rand() % n;
+int rand_0toN_minus_1(int n){
+    unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+    static default_random_engine generator (seed);
+    uniform_int_distribution<int> distribution(0,n-1);
+    int rn = distribution(generator);
+    return rn;
 }
 
 bool Box::isfull() {
@@ -351,15 +349,15 @@ string Ball_collection::remove_ball(){ //randomly removes a ball from the collec
     static uniform_real_distribution<double> unif(lb, ub);
     static default_random_engine re(seed);
     double r = unif(re);
-    cout << "here is a random number between 0 and 1 " << r << endl; //debugging purposes
-    cout << "the current ratio of bright to total balls is " << (static_cast<double>(_num_bright_balls)/static_cast<double>(_num_bright_balls + _num_dark_balls)) << endl; //debugging purposes
+    //cout << "here is a random number between 0 and 1 " << r << endl; //debugging purposes
+    //cout << "the current ratio of bright to total balls is " << (static_cast<double>(_num_bright_balls)/static_cast<double>(_num_bright_balls + _num_dark_balls)) << endl; //debugging purposes
     if (r <= (static_cast<double>(_num_bright_balls)/static_cast<double>(_num_bright_balls + _num_dark_balls))){
         _num_bright_balls--;
-        cout << "bright" << endl; //debugging purposes
+        //cout << "bright" << endl; //debugging purposes
         return "bright";
     }else{
         _num_dark_balls--;
-        cout << "dark" << endl; //debugging purposes
+        //cout << "dark" << endl; //debugging purposes
         return "dark";
     }
 
